@@ -14,6 +14,7 @@ class CreateRolPermissionsTable extends Migration
     public function up()
     {
         Schema::create('rol_permissions', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('IDROL');
             $table->unsignedBigInteger('IDPERMISSION');
             $table->foreign('IDROL')->references('id')->on('rols')->onDelete("cascade")->onUpdate("cascade");
