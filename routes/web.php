@@ -19,3 +19,11 @@ Route::get('/', function () {
 
 Route::resource('category','CategoryController');
 Route::resource('advertisement','AdvertisementController');
+Route::resource('order','OrderController');
+Route::resource('paymentMethod','paymentMethodController');
+Route::resource('permission','PermissionController');
+Route::resource('rol','RolController');
+Route::resource('rolPermission','RolPermissionController');
+Route::resource('user','UserController');
+Route::resource('transaction','TransactionController');
+Route::resource('valoration','ValorationController');
