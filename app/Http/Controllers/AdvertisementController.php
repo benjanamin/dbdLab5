@@ -22,8 +22,8 @@ class AdvertisementController extends Controller
         $anuncio->Cantidad = $request->Cantidad;
         $anuncio->Descripcion = $request->Descripcion;
         $anuncio->PrecioUnitario = $request->PrecioUnitario;
-        $anuncio->RUTUsuario = $request->RUTUsuario;
-        $anuncio->IDCategoria = $anuncio->IDCategoria;
+        $anuncio->IDUsuario = $request->IDUsuario;
+        $anuncio->IDCategoria = $request->IDCategoria;
         $anuncio->save();
         return Advertisement::all(); 
     }
@@ -39,13 +39,12 @@ class AdvertisementController extends Controller
 
     public function update(Request $request, $id){
         $anuncio = Advertisement::findOrFail($id);
-        $anuncio = new Advertisement;
         $anuncio->Titulo = $request->Titulo;
         $anuncio->Cantidad = $request->Cantidad;
         $anuncio->Descripcion = $request->Descripcion;
         $anuncio->PrecioUnitario = $request->PrecioUnitario;
-        $anuncio->RUTUsuario = $request->RUTUsuario;
-        $anuncio->IDCategoria = $anuncio->IDCategoria;
+        $anuncio->IDUsuario = $request->IDUsuario;
+        $anuncio->IDCategoria = $request->IDCategoria;
         $anuncio->save();
         return Advertisement::findOrFail($id);
     }

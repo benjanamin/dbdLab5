@@ -15,13 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('Estado',50);
+            $table->string('Estado', 50);
             $table->integer('Cantidad');
 
-            $table->unsignedBigInteger('RUTUsuario');
+            $table->unsignedBigInteger('IDUsuario');
             $table->unsignedBigInteger('IDAnuncio');
 
-            $table->foreign('RUTUsuario')->references('RUT')->on('users')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('IDUsuario')->references('id')->on('users')->onDelete("cascade")->onUpdate("cascade");
             $table->foreign('IDAnuncio')->references('id')->on('advertisements')->onDelete("cascade")->onUpdate("cascade");
 
             $table->timestamps();

@@ -16,8 +16,8 @@ class CreatePaymentMethodsTable extends Migration
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->string('TipoDePago',50);
-            $table->unsignedBigInteger('RUTUsuario');
-            $table->foreign('RUTUsuario')->references('RUT')->on('users')->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger('IDUsuario');
+            $table->foreign('IDUsuario')->references('id')->on('users')->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

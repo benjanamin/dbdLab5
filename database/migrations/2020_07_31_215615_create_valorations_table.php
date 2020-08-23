@@ -19,9 +19,9 @@ class CreateValorationsTable extends Migration
             $table->integer('Estrellas');
             $table->string('Comentario',255);
             //llaves foraneas
-            $table->unsignedBigInteger('RUTUsuario');
+            $table->unsignedBigInteger('IDUsuario');
             $table->unsignedBigInteger('IDAnuncio');
-            $table->foreign('RUTUsuario')->references('RUT')->on('users')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('IDUsuario')->references('id')->on('users')->onDelete("cascade")->onUpdate("cascade");
             $table->foreign('IDAnuncio')->references('id')->on('advertisements')->onDelete("cascade")->onUpdate("cascade");
 
             $table->timestamps();

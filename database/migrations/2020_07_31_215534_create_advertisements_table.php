@@ -20,10 +20,10 @@ class CreateAdvertisementsTable extends Migration
             $table->string('Descripcion',255);
             $table->integer('PrecioUnitario');
 
-            $table->unsignedBigInteger('RUTUsuario');
+            $table->unsignedBigInteger('IDUsuario');
             $table->unsignedBigInteger('IDCategoria');
             
-            $table->foreign('RUTUsuario')->references('RUT')->on('users')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('IDUsuario')->references('id')->on('users')->onDelete("cascade")->onUpdate("cascade");
             $table->foreign('IDCategoria')->references('id')->on('categories')->onDelete("cascade")->onUpdate("cascade");
 
             $table->timestamps();
