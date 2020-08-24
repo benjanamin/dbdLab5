@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    protected $fillable = ['RUT', 'nombre', 'email', 'password', 'direccion', 'telefono', 'fechaDeNacimiento', 'IDROL'];
+
     public function paymentmethods()
     {
         return $this->hasMany(PaymentMethod::class, 'IDUsuario');

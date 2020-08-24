@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $fillable = ['Estado', 'Cantidad', 'IDUsuario', 'IDAnuncio'];
+
     public function transaction()
     {
         return $this->hasOne(Transaction::class, 'IDOrden');

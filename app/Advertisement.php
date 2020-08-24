@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advertisement extends Model
 {
+    protected $fillable = ['Titulo', 'Cantidad', 'Descripcion', 'PrecioUnitario', 'IDUsuario', 'IDCategoria'];
+
     public function valoration()
     {
         return $this->hasMany(Valoration::class, 'IDAnuncio');
