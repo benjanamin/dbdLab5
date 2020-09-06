@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/registro', 'UserController@showForm');
 
 Route::resource('category','CategoryController');
 Route::resource('advertisement','AdvertisementController');
@@ -27,3 +28,5 @@ Route::resource('rolPermission','RolPermissionController');
 Route::resource('user','UserController');
 Route::resource('transaction','TransactionController');
 Route::resource('valoration','ValorationController');
+
+

@@ -24,7 +24,7 @@ class UserController extends Controller
         $usuario->direccion = $request->direccion;
         $usuario->telefono = $request->telefono;
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->IDROL = $request->IDROL;
+        $usuario->IDROL = 1;
         $usuario->save();
         return User::all(); 
     }
@@ -55,5 +55,9 @@ class UserController extends Controller
         $usuario = User::findOrFail($id);
         $usuario->delete();
         return User::all();
+    }
+
+    public function showForm(){
+        return view('register');
     }
 }
