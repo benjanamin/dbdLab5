@@ -71,7 +71,7 @@
                             Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
                         </p>
                         
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" action = "UserController@showData" class="btn btn-primary">Registrarse</button>
                     </div>
                 </div>
             </section>

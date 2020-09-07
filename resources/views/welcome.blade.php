@@ -39,7 +39,7 @@
                                     <input type="submit" name="submit" class="btn btn-info btn-md" value="Entrar">
                                 </div>
                                 <div id="register-link" class="text-right">
-                                    <a href="#" class="text-info">Registrarse</a>
+                                    <a href="registro" class="text-info">Registrarse</a>
                                 </div>
                             </form>
                         </div>

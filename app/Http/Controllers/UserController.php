@@ -26,7 +26,7 @@ class UserController extends Controller
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuario->IDROL = 1;
         $usuario->save();
-        return User::all(); 
+        return view('welcome');
     }
 
     public function show($id){
@@ -59,5 +59,9 @@ class UserController extends Controller
 
     public function showForm(){
         return view('register');
+    }
+
+    public function showData(){
+        return view('userData');
     }
 }
