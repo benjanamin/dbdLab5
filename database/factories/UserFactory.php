@@ -8,12 +8,12 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     $idRol = App\Rol::pluck('id')->toArray();
     return [
-        'RUT' => $faker->numberBetween($min = 100000000, $max = 900000000),
-        'nombre'=> $faker->randomElement($array = array('Pepa', 'Pepe', 'Pepi','Pepo','Pepu')),
+        'RUT' => $faker->numerify('########-#'),
+        'nombre'=> $faker->name,
         'email' =>  $faker->email,
-        'password'=> $faker->randomElement($array = array('Pepa', 'Pepe', 'Pepi','Pepo','Pepu')), 
-        'direccion' => $faker->randomElement($array = array('Pepa', 'Pepe', 'Pepi','Pepo','Pepu')),
-        'telefono' => $faker->randomElement($array = array('Pepa', 'Pepe', 'Pepi','Pepo','Pepu')),
+        'password'=> $faker->word, 
+        'direccion' => $faker->address,
+        'telefono' => $faker->numerify('+56 9 #### ####'),
         'fechaDeNacimiento' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'IDROL' => $faker->randomElement($idRol),
         //

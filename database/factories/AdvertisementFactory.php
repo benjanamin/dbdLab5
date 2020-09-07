@@ -12,7 +12,7 @@ $factory->define(Advertisement::class, function (Faker $faker) {
     
  
     return [
-        'Titulo' => $faker->randomElement($array = array('Zapatillas', 'Perros', 'Manzana')),
+        'Titulo' => $faker->unique()->numerify('Artículo N°####'),
         'Cantidad' => $faker->numberBetween($min = 0, $max = 10),
         'Descripcion' => $faker->text($maxNbChars = 200) ,
         'PrecioUnitario'=> $faker->numberBetween($min = 100, $max = 1000),
