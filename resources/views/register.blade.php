@@ -40,11 +40,11 @@
                         
                         <div class="form-group col-lg-6">
                             <label>RUT</label>
-                            <input type="" name="RUT" class="form-control" id="RUT" value="">
+                            <input type="text" name="RUT" class="form-control" id="RUT" value="">
                         </div>		
                         <div class="form-group col-lg-12">
                             <label>Direccion</label>
-                            <input type="" name="direccion" class="form-control" id="RUT" value="">
+                            <input type="text" name="direccion" class="form-control" id="RUT" value="">
                         </div>	
                         <div class="form-group col-lg-12">
                             <label>Fecha de Nacimiento</label>
