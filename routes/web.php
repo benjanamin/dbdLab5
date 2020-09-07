@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 Route::get('/registro', 'UserController@showForm');
 Route::get('/datos', 'UserController@showData');
+Route::get('/usuario', 'UserController@getUserByEmail');
 
 Route::resource('category','CategoryController');
 Route::resource('advertisement','AdvertisementController');

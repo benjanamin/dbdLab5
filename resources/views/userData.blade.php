@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    hola
+    Usuario mal ingresado o no encontrado
 </body>
 </html>

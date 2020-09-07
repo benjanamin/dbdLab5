@@ -60,8 +60,18 @@ class UserController extends Controller
     public function showForm(){
         return view('register');
     }
-
     public function showData(){
         return view('userData');
     }
+
+    public function getUserByEmail(Request $request){
+        $email =$request->input('email');
+        $user = User::where('email',$email)->first();
+        if(empty($user)){
+            return view('userData');
+        }
+        return $user;
+    }
+
+    
 }
