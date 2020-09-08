@@ -66,7 +66,10 @@ class UserController extends Controller
 
     public function getUserByEmail(Request $request){
         $email =$request->input('email');
-        $user = User::where('email',$email)->first();
+        $password = $request->input('password');
+        $condition = ['email' => $email, 'password'=> $password];
+        $user = User::where($condition)->first();
+        
         if(empty($user)){
             return view('userData');
         }
