@@ -7,11 +7,12 @@ use App\User;
 class UserController extends Controller
 {
     public function index(){
-        $usuarios = User::all();
-        return $usuarios; 
+        $users = User::all();
+        return view('user.index', compact('users')); 
     }
 
     public function create(){
+        return view('user.create');
 
     }
 
@@ -26,15 +27,19 @@ class UserController extends Controller
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuario->IDROL = 1;
         $usuario->save();
-        return view('welcome');
+
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
     public function show($id){
-        $usuario = User::findOrFail($id);
-        return $usuario;
+        $user = User::findOrFail($id);
+        return view('user.show', compact('user'));
     }
 
     public function edit($id){
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
 
     }
 
@@ -44,17 +49,24 @@ class UserController extends Controller
         $usuario->nombre = $request->nombre;
         $usuario->email = $request->email;
         $usuario->password = $request->password;
+        $usuario->direccion = $request->direccion;
         $usuario->telefono = $request->telefono;
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->IDROL = $request->IDROL;
+        $usuario->IDROL = 1; //cambiar segun permisos entre arrendador, arrendatario y admin
         $usuario->save();
-        return User::findOrFail($id);
+
+        $users = User::all();
+
+
+        return view('user.index', compact('users'));
     }
 
     public function destroy($id){
         $usuario = User::findOrFail($id);
         $usuario->delete();
-        return User::all();
+
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
     public function showForm(){
