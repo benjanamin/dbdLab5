@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    Usuario mal ingresado o no encontrado
+
+    <li>{{$data->nombre}}</li>
+    <li>{{$data->RUT}}</li>
+    <li>{{$data->email}}</li>
+   
+    <a href="form" class="text-info">Registrarse</a>
 </body>
 </html>

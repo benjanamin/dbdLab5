@@ -19,6 +19,8 @@ Route::get('/', function () {
 Route::get('/registro', 'UserController@showForm');
 Route::get('/datos', 'UserController@showData');
 Route::get('/usuario', 'UserController@getUserByEmail');
+Route::get('/form', 'AdvertisementController@showForm'); //test
+
 
 Route::resource('category','CategoryController');
 Route::resource('advertisement','AdvertisementController');
@@ -32,3 +34,4 @@ Route::resource('transaction','TransactionController');
 Route::resource('valoration','ValorationController');
 
 
+    

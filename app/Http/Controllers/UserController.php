@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CrearUsuarioRequest;
 use Illuminate\Http\Request;
 use App\User;
+
 class UserController extends Controller
 {
     public function index(){
@@ -15,7 +16,19 @@ class UserController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function rules()
+    {
+        return [
+            //Usuario
+            'RUT' => 'required|string|max:11',
+            'nombre' => 'required|string|max:50',
+            'email' => 'required|email|string|max:50|unique:users',
+            'password' => 'required|string|max:15',
+            'telefono' => 'required|string|max:25'
+        ];
+    }
+
+    public function store(CrearUsuarioRequest $request){
         $usuario = new User;
         $usuario->RUT = $request->RUT;
         $usuario->nombre = $request->nombre;
@@ -71,9 +84,9 @@ class UserController extends Controller
         $user = User::where($condition)->first();
         
         if(empty($user)){
-            return view('userData');
+            return view('welcome');
         }
-        return $user;
+        return view('userData', ['data'=>$user]);
     }
 
     
