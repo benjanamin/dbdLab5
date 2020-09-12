@@ -20,12 +20,19 @@ class AdvertisementController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'Titulo' => 'required',
+            'Cantidad' => 'required|numeric|min:1',
+            'Descripcion' => 'required|max:255',
+            'PrecioUnitario' => 'required|numeric|min:1'
+        ]);
+
         $anuncio = new Advertisement;
         $anuncio->Titulo = $request->Titulo;
         $anuncio->Cantidad = $request->Cantidad;
         $anuncio->Descripcion = $request->Descripcion;
         $anuncio->PrecioUnitario = $request->PrecioUnitario;
-        $anuncio->IDUsuario = 1; //cambiar por ID del usuario loggeado 
+        $anuncio->IDUsuario = 1; 
         $anuncio->IDCategoria = Category::where('nombre', $request->Categoria)->firstOrFail()->id; //obtendrá el id de la categoría seleccionada
         $anuncio->save();
 
@@ -45,13 +52,21 @@ class AdvertisementController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'Titulo' => 'required',
+            'Cantidad' => 'required|numeric|min:1',
+            'Descripcion' => 'required|max:255',
+            'PrecioUnitario' => 'required|numeric|min:1'
+        ]);
+
         $anuncio = Advertisement::findOrFail($id);
+        $anuncio = new Advertisement;
         $anuncio->Titulo = $request->Titulo;
         $anuncio->Cantidad = $request->Cantidad;
         $anuncio->Descripcion = $request->Descripcion;
         $anuncio->PrecioUnitario = $request->PrecioUnitario;
-        $anuncio->IDUsuario = 1; //Cambiar por ID del usuario loggeado
-        $anuncio->IDCategoria = Category::where('nombre', $request->Categoria)->firstOrFail()->id;
+        $anuncio->IDUsuario = 1; 
+        $anuncio->IDCategoria = Category::where('nombre', $request->Categoria)->firstOrFail()->id; //obtendrá el id de la categoría seleccionada
         $anuncio->save();
 
         $ads = Advertisement::all();
@@ -66,18 +81,31 @@ class AdvertisementController extends Controller
         return view('advertisement.index', compact('ads'));
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    //Borrar estas funciones
     public function showForm(){
         return view('itemForm');
     }
 
     public function postAd(Request $request){
         $anuncio = new Advertisement;
-        $valid = $request->validate([
-            'Titulo' => ['required', 'max:255'],
-            'Cantidad' => ['required'],
-            'Descripcion' => ['required'],
-            'PrecioUnitario' => ['required']
-        ]);
         $anuncio->Titulo = $valid->Titulo;
         $anuncio->Cantidad = $valid->Cantidad;
         $anuncio->Descripcion = $valid->Descripcion;
@@ -94,13 +122,15 @@ class AdvertisementController extends Controller
         return Advertisement::latest()->first();
     }
 
-    public function validarEditar(){
-        $datosValidados = request()->validate([
+    public function validateAdvertisement(){
+        return request()->validate([
             'Titulo' => 'required',
-            'Cantidad' => 'required',
+            'Cantidad' => 'required|numeric',
             'Descripcion' => 'required|max:255',
-            'PrecioUnitario' => 'required',
+            'PrecioUnitario' => 'required|numeric',
+            'Categoria' => 'required'
         ]);
+        
     }
 
 }

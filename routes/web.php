@@ -23,6 +23,14 @@ Route::get('/form', 'AdvertisementController@showForm'); //test
 Route::post('/add', 'AdvertisementController@postAd');
 Route::get('/ad', 'AdvertisementController@showAd');
 
+//Pruebas login con auth y validate
+Route::get('/user/loginPage', 'UserController@loginPage');
+Route::post('/user/checkLogin', 'UserController@checkLogin');
+Route::get('/user/success', 'UserController@success');
+Route::get('/user/logout', 'UserController@logout');
+
+//Pruebas publicacion de anuncio y validacion
+
 Route::resource('category','CategoryController');
 Route::resource('advertisement','AdvertisementController');
 Route::resource('order','OrderController');

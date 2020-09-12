@@ -21,7 +21,7 @@
 
         <div>
             <label for="password">Contraseña</label>
-            <input type="text" name="password" value="{{ old('password') }}">
+            <input type="password" name="password" value="{{ old('password') }}">
         </div>
 
         <div>
@@ -31,7 +31,7 @@
 
         <div>
             <label for="email">Correo electrónico</label>
-            <input type="text" name="email" value="{{ old('email') }}">
+            <input type="email" name="email" value="{{ old('email') }}">
         </div>
 
         <div>
@@ -50,7 +50,17 @@
         </div>
         <button>Crear</button>
     </form>
-    
+
+    <br />
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul> <!-- lista no ordenada (unordered list) -->
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li> <!-- elemento de la lista (list item) -->
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

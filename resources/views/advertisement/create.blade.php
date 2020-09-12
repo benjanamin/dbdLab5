@@ -21,7 +21,7 @@
 
         <div>
             <label for="Cantidad">Cantidad</label>
-            <input type="text" name="Cantidad" value="{{ old('Cantidad') }}">
+            <input type="number" min="1" name="Cantidad" value="{{ old('Cantidad') }}">
         </div>
 
         <div>
@@ -44,8 +44,19 @@
                 <option value="Vehículos">Vehículos</option>
             </select> 
         </div>
-        <button>Confirmar modificación</button>
+        <button>Publicar anuncio</button>
     </form>
+
+    <br />
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul> <!-- lista no ordenada (unordered list) -->
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li> <!-- elemento de la lista (list item) -->
+                @endforeach
+            </ul>
+        </div>
+    @endif
     
 
     <!-- Optional JavaScript -->

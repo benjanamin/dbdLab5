@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
+use Auth;
+
+
 class UserController extends Controller
 {
     public function index(){
@@ -17,11 +21,20 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'RUT' => 'required',
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'fechaDeNacimiento' => 'required'
+        ]);
         $usuario = new User;
         $usuario->RUT = $request->RUT;
         $usuario->nombre = $request->nombre;
         $usuario->email = $request->email;
-        $usuario->password = $request->password;
+        $usuario->password = bcrypt($request->password);
         $usuario->direccion = $request->direccion;
         $usuario->telefono = $request->telefono;
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
@@ -44,6 +57,16 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'RUT' => 'required',
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'fechaDeNacimiento' => 'required'
+        ]);
+
         $usuario = User::findOrFail($id);
         $usuario->RUT = $request->RUT;
         $usuario->nombre = $request->nombre;
@@ -69,6 +92,52 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
+    //Testeado
+    public function loginPage(){
+        return view('user.login');
+    }
+
+    public function checkLogin(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|alphaNum|min:3'
+        ]);
+        
+        $user_data = array(
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        );
+
+        if(Auth::attempt($user_data)){
+            return redirect('/user/success');
+        }
+        else{
+            return back()->with('error', 'Datos de ingreso incorrectos.');
+        }
+
+    }
+
+    public function success(){
+        return view('user.success');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/user/loginPage');
+        
+    } 
+
+
+
+
+
+
+
+
+
+
+
+    //Borrar estas funciones
     public function showForm(){
         return view('register');
     }
@@ -87,6 +156,4 @@ class UserController extends Controller
         }
         return $user;
     }
-
-    
 }

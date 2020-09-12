@@ -26,7 +26,7 @@
 
         <div>
             <label for="Cantidad">Cantidad</label>
-            <input type="text" name="Cantidad" value="{{ $ad->Cantidad }}">
+            <input type="number" min="0" name="Cantidad" value="{{ $ad->Cantidad }}">
         </div>
 
         <div>
@@ -52,6 +52,16 @@
         <button>Confirmar modificación</button>
        </form>
        
+       <br />
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul> <!-- lista no ordenada (unordered list) -->
+                    @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li> <!-- elemento de la lista (list item) -->
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
