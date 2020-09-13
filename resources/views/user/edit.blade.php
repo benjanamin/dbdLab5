@@ -7,16 +7,31 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
 
     <title>Editar usuario</title>
   </head>
   <body>
+  @if($errors->any())
+        <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+            <ul> <!-- lista no ordenada (unordered list) -->
+                @foreach($errors->all() as $error)
+                <li>
+                    <strong>{{ $error }}</strong>
+                </li> <!-- elemento de la lista (list item) -->
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+
       <div class="container">
           <h1>
               Editar usuario
           </h1>
       </div>
-      <form action="/user/{{ $user->id }}" method="POST">
+      <form action="/user/{{ $user->id }}" method="post">
         @method('PATCH')
 
         <div>

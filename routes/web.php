@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home');
 });
 Route::get('/registro', 'UserController@showForm');
 Route::get('/datos', 'UserController@showData');
@@ -30,6 +30,7 @@ Route::get('/user/success', 'UserController@success');
 Route::get('/user/logout', 'UserController@logout');
 
 //Pruebas publicacion de anuncio y validacion
+Route::get('/advertisement/showAdvertisements', 'AdvertisementController@showAdvertisements');
 
 Route::resource('category','CategoryController');
 Route::resource('advertisement','AdvertisementController');

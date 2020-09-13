@@ -7,48 +7,73 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
 
     <title>Login</title>
   </head>
   <body>
-      <div class="container box">
-          <h3 text-align="center">Login</h3>
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>{{ $message }}</strong> <!-- Mostrará alerta de datos de ingreso incorrectos -->
+        </div>
 
-          @if ($message = Session::get('error'))
-          <div class="alert alert-danger alert-block">
-              <button type="button" class="close" data-dismiss="alert">x</button>
-              <strong>{{ $message }}</strong> <!-- Mostrará alerta de datos de ingreso incorrectos -->
-          </div>
+        @endif
 
-          @endif
+        @if($errors->any())
+        <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+            <ul> <!-- lista no ordenada (unordered list) -->
+                @foreach($errors->all() as $error)
+                <li>
+                    <strong>{{ $error }}</strong>
+                </li> <!-- elemento de la lista (list item) -->
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <br />
+
         
-          @if($errors->any())
-            <div class="alert alert-danger">
-                <ul> <!-- lista no ordenada (unordered list) -->
-                    @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li> <!-- elemento de la lista (list item) -->
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-          <form action="/user/checkLogin" method="post">
+    <div class="col-auto">
+      <div class="centered-div">          
+      <div class="col-4">
+          
+          <form class="form-border form-color" action="/user/checkLogin" method="post">
               {{ csrf_field() }}
-              <div class="form-group">
-                  <label>Ingresar email</label>
-                  <input type="email" name="email" id="email" class="form-control" />
+              <div class="col-auto">
+                <h3 class="post-title">Login</h3>
               </div>
-
-              <div class="form-group">
+              
+              <div class="col-auto">
+                <div class="form-group">
+                    <label>Ingresar email</label>
+                    <input type="email" name="email" id="email" class="form-control" />
+                </div>
+              </div>
+              
+            <div class="col-auto">
+                <div class="form-group">
                   <label>Ingresar contraseña</label>
                   <input type="password" name="password" id="password" class="form-control" />
               </div>
-
-              <div class="form-group">
-                  <input type="submit" name="login" class="btn btn-primary" value="Login" />  
+            </div>
+            
+            <div class="col-auto">
+                <div class="form-group">
+                  <input type="submit" name="login" class="btn btn-primary col-auto" value="Login" />  
               </div>
-
+            </div>              
           </form>
+      </div>
       </div>    
+    </div>
+
+    <div class="top-right">
+            <a href="/">Inicio&NonBreakingSpace;</a>
+            <a href="/user/create">&NonBreakingSpace;Registrarse</a>
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

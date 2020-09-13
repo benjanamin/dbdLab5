@@ -8,28 +8,36 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
+    <link href='https://fonts.googleapis.com/css?family=Ranchers' rel='stylesheet'>
+    <title>Inicio</title>
 
-    <title>Muestra anuncios</title>
+    <!-- Para no usar @import url en style.css -->
+    <style>
+      div.title{
+        font-family: 'Ranchers'; 
+      }
+    </style>
+    <!--***************************************-->
+
   </head>
-  <body class="py-4">
-    <h3 class="post-title">Anuncios publicados</h3>
-    <div class="container">
-      @forelse($ads as $ad)
-      
-      <div class="row mb-3">
-        <div class="col-6 themed-grid-col name-background">Nombre: {{ $ad->Titulo }}</div>
-        <div class="col-3 themed-grid-col price-background">Precio por unidad ${{ $ad->PrecioUnitario }} CLP</div>
-        <div class="col-3 themed-grid-col owner-background">Queda(n) {{ $ad->Cantidad }} disponible(s)</div>
+  <body>
+      <div class="title centered-div">
+        Rentall();       
       </div>
-      @empty
-      <p>No hay anuncios publicados.</p>
-      @endforelse
+      <div class="top-right">
+        <a href="/user/loginPage">Ingresar&NonBreakingSpace;</a>
+        <a href="/user/create">&NonBreakingSpace;Registrarse</a>
+      </div>
     </div>
-    <div class="top-right">
-            <a href="/">Inicio&NonBreakingSpace;</a>
-            <a href="/advertisement/create">&NonBreakingSpace;Publicar</a>
-            <a href="/user/logout">&NonBreakingSpace;Logout</a>
-        </div>
+    
+        
+
+    
+    
+    
+
+   
+   
     
 
     <!-- Optional JavaScript -->

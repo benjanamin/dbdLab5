@@ -1,0 +1,117 @@
+body{
+    font-size: 1.3vw;
+    background: #8584EB;
+    color: #ffffff;
+    height: 100%;
+    width: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn{
+    font-size: 1.3vw;
+}
+
+button{
+    color: #ffffff;
+    background-color: #222152;
+    border-color: #000000;
+}
+
+a{
+    color: #ffffff;
+    font-size: 1.3vw;
+}
+
+.back-color{
+    color: #8584EB;
+}
+
+.alert-size{
+    font-size: 1.3vw;
+}
+
+.welcome-msg{
+    font-size: 3vw;
+    text-align: center;
+}
+
+.title{
+    font-size: 14vw;
+    text-align: center;
+}
+
+.post-title{
+    font-size: 5vw;
+    text-align: center;
+}
+
+.form-border{
+    position: relative;
+    border: 1px solid #000000;
+    padding: .75rem 1.25rem;
+    border-radius: .25rem;
+    margin-bottom: 1rem;
+}
+
+.form-color{
+    background-color: #42419E;
+}
+
+.start-btn{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.centered-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.end-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.centered-div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-right{
+    position: absolute;
+    right: 3%;
+    top: 3%;
+}
+
+.alert-success{
+    color: #ffffff;
+    background-color: #42419E;
+    border-color: #000000;
+}
+
+.alert-danger{
+    background-color: #ffffff;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #222152;
+    border-color: #000000;
+}
+
+.name-background{
+    background-color:  #222152;
+}
+
+.price-background{
+    background-color: #42419E;
+}
+
+.owner-background{
+    background-color: #5856D1;
+}
+
+
+

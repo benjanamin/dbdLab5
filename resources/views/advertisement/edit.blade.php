@@ -7,61 +7,73 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
 
     <title>Editar anuncio</title>
   </head>
+
   <body>
-      <div class="container">
-          <h1>
-              Editar anuncio
-          </h1>
-      </div>
-      <form action="/advertisement/{{ $ad->id }}" method="POST">
-        @method('PATCH')
-
-        <div>
-            <label for="Titulo">Título</label>
-            <input type="text" name="Titulo" value="{{ $ad->Titulo }}">
+  @if($errors->any())
+        <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+            <ul> <!-- lista no ordenada (unordered list) -->
+                @foreach($errors->all() as $error)
+                <li>
+                    <strong>{{ $error }}</strong>
+                </li> <!-- elemento de la lista (list item) -->
+                @endforeach
+            </ul>
         </div>
-
-        <div>
-            <label for="Cantidad">Cantidad</label>
-            <input type="number" min="0" name="Cantidad" value="{{ $ad->Cantidad }}">
-        </div>
-
-        <div>
-            <label for="PrecioUnitario">Precio por unidad</label>
-            <input type="text" name="PrecioUnitario" value="{{ $ad->PrecioUnitario }}">
-        </div>
-
-        <div>
-            <label for="Descripcion">Descripción</label>
-            <input type="text" name="Descripcion" value="{{ $ad->Descripcion }}">
-        </div>
-        <div>
-            <label for="Categoria">Categoría</label>
-            <select name="Categoria">
-                <option value="Inmobiliaria">Inmobiliaria</option>
-                <option value="Muebles">Muebles</option>
-                <option value="Artículos de camping">Artículos de camping</option>
-                <option value="Herramientas">Herramientas</option>
-                <option value="Espacios">Espacios</option>
-                <option value="Vehículos">Vehículos</option>
-            </select> 
-        </div>
-        <button>Confirmar modificación</button>
-       </form>
-       
-       <br />
-        @if($errors->any())
-            <div class="alert alert-danger">
-                <ul> <!-- lista no ordenada (unordered list) -->
-                    @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li> <!-- elemento de la lista (list item) -->
-                    @endforeach
-                </ul>
-            </div>
         @endif
+
+        <br />
+
+      <div class="centered-div">
+            <form class="form-border form-color" action="/advertisement/{{ $ad->id }}" method="post">
+            @method('PATCH')
+
+            <h3 class="post-title">Editar anuncio</h3>
+
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" name="Titulo" class="form-control" value="{{ $ad->Titulo }}" />
+            </div>
+
+            <div class="form-group">
+                <label>Cantidad</label>
+                <input type="number" min="0" name="Cantidad" class="form-control" value="{{ $ad->Cantidad }}" />
+            </div>
+
+            <div class="form-group">
+                <label>Precio por unidad</label>
+                <input type="text" name="PrecioUnitario" class="form-control" value="{{ $ad->PrecioUnitario }}" />
+            </div>
+
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea rows="2" type="text" name="Descripcion" class="form-control">{{ $ad->Descripcion }}</textarea>
+                <!-- textarea no tiene atributo value -->
+            </div>
+
+            <div class="form-group">
+                <label>Categoría</label>
+                <select name="Categoria" class="form-control">
+                    <option value="Inmobiliaria">Inmobiliaria</option>
+                    <option value="Muebles">Muebles</option>
+                    <option value="Artículos de camping">Artículos de camping</option>
+                    <option value="Herramientas">Herramientas</option>
+                    <option value="Espacios">Espacios</option>
+                    <option value="Vehículos">Vehículos</option>
+                </select> 
+            </div>
+            <div class="form-group">
+                <input type="submit" name="edit" class="btn btn-primary" value="Confirmar cambios" />  
+            </div>
+    </form>
+    </div>
+       
+       
+        
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

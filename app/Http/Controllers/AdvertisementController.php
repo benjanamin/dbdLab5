@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Advertisement;
 use App\Category;
 use App\User;
+use Auth;
 
 class AdvertisementController extends Controller
 {
@@ -21,10 +22,10 @@ class AdvertisementController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'Titulo' => 'required',
-            'Cantidad' => 'required|numeric|min:1',
+            'Titulo' => 'required|max:15',
+            'Cantidad' => 'required|numeric|min:1|max:50',
             'Descripcion' => 'required|max:255',
-            'PrecioUnitario' => 'required|numeric|min:1'
+            'PrecioUnitario' => 'required|numeric|min:1|max:2147483647'
         ]);
 
         $anuncio = new Advertisement;
@@ -32,12 +33,11 @@ class AdvertisementController extends Controller
         $anuncio->Cantidad = $request->Cantidad;
         $anuncio->Descripcion = $request->Descripcion;
         $anuncio->PrecioUnitario = $request->PrecioUnitario;
-        $anuncio->IDUsuario = 1; 
+        $anuncio->IDUsuario = Auth::user()->id; //obtiene id del usuario loggeado
         $anuncio->IDCategoria = Category::where('nombre', $request->Categoria)->firstOrFail()->id; //obtendrá el id de la categoría seleccionada
         $anuncio->save();
 
-        $ads = Advertisement::all();
-        return view('advertisement.index', compact('ads'));
+        return redirect('/advertisement/showAdvertisements');
     }
 
     public function show($id){
@@ -53,30 +53,33 @@ class AdvertisementController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'Titulo' => 'required',
-            'Cantidad' => 'required|numeric|min:1',
+            'Titulo' => 'required|max:15',
+            'Cantidad' => 'required|numeric|min:1|max:50',
             'Descripcion' => 'required|max:255',
-            'PrecioUnitario' => 'required|numeric|min:1'
+            'PrecioUnitario' => 'required|numeric|min:1|max:2147483647'
         ]);
 
         $anuncio = Advertisement::findOrFail($id);
-        $anuncio = new Advertisement;
         $anuncio->Titulo = $request->Titulo;
         $anuncio->Cantidad = $request->Cantidad;
         $anuncio->Descripcion = $request->Descripcion;
         $anuncio->PrecioUnitario = $request->PrecioUnitario;
-        $anuncio->IDUsuario = 1; 
-        $anuncio->IDCategoria = Category::where('nombre', $request->Categoria)->firstOrFail()->id; //obtendrá el id de la categoría seleccionada
+        $anuncio->IDUsuario = Auth::user()->id; 
+        $anuncio->IDCategoria = Category::where('nombre', $request->Categoria)->firstOrFail()->id; 
         $anuncio->save();
 
-        $ads = Advertisement::all();
-        return view('advertisement.index', compact('ads'));
+        return redirect('/advertisement/showAdvertisements');
     }
 
     public function destroy($id){
         $anuncio = Advertisement::findOrFail($id);
         $anuncio->delete();
 
+        $ads = Advertisement::all();
+        return view('advertisement.index', compact('ads'));
+    }
+
+    public function showAdvertisements(){
         $ads = Advertisement::all();
         return view('advertisement.index', compact('ads'));
     }

@@ -7,29 +7,49 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
+    
+    <title>Ingreso exitoso</title>
     </head>
     <body>
-        @if(isset(Auth::user()->email))
-            <div class="alert alert-danger success-block">
-            <strong>Welcome {{ Auth::user()->email }}</strong>
-            <br />
-            <a href="/user/logout">Logout</a>
-            <br />
-            <a href="/advertisement/create">Publicar anuncio</a>
-            <br />
-            <a href="/advertisement/">Ver anuncios</a>
-        </div>
+      <div class="top-right">
+        <a href="/">Inicio</a>
+     </div>
 
+      <div class="centered-div alert-size">
+        @if(isset(Auth::user()->email))
+        <div class="alert alert-success success-block">
+          <div class="welcome-msg">
+            <strong>Bienvenido, {{ Auth::user()->nombre }}</strong>
+          </div>
+          <div class="row">
+
+            <div class="col start-btn">
+              <form action="/advertisement" method="get">
+                <button>Ver anuncios</button>
+              </form>
+            </div>
+
+            <div class="col centered-btn">
+              <form action="/advertisement/create" method="get">
+                <button>Publicar anuncio</button>
+              </form>
+            </div>
+
+            <div class="col end-btn">
+              <form action="/user/logout" method="get">
+                <button>Logout</button>
+              </form>
+            </div>
+          
+            
+            
+        </div>
         @else
             <script> window.location = "/user/login";</script>
-      
-    
-
-
-      
-      @endif   
+        @endif      
+      </div>
+        
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -7,60 +7,113 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
 
     <title>Crear usuario.</title>
   </head>
   <body>
-      <h1>Crear usuario</h1>
-      <form action="/user" method="post">
-        
-        <div>
-            <label for="RUT">RUT</label>
-            <input type="text" name="RUT" value="{{ old('RUT') }}">
-        </div>
-
-        <div>
-            <label for="password">Contraseña</label>
-            <input type="password" name="password" value="{{ old('password') }}">
-        </div>
-
-        <div>
-            <label for="nombre">Nombre de usuario</label>
-            <input type="text" name="nombre" value="{{ old('nombre') }}">
-        </div>
-
-        <div>
-            <label for="email">Correo electrónico</label>
-            <input type="email" name="email" value="{{ old('email') }}">
-        </div>
-
-        <div>
-            <label for="telefono">Número telefónico</label>
-            <input type="text" name="telefono" value="{{ old('telefono') }}">
-        </div>
-
-        <div>
-            <label for="direccion">Dirección</label>
-            <input type="text" name="direccion" value="{{ old('direccion') }}">
-        </div>
-
-        <div>
-            <label for="fechaDeNacimiento">Fecha de nacimiento</label>
-            <input type="date" name="fechaDeNacimiento" value="{{ old('fechaDeNacimiento') }}">
-        </div>
-        <button>Crear</button>
-    </form>
-
-    <br />
-    @if($errors->any())
-        <div class="alert alert-danger">
+    
+  @if($errors->any())
+        <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
             <ul> <!-- lista no ordenada (unordered list) -->
                 @foreach($errors->all() as $error)
-                <li>{{ $error }}</li> <!-- elemento de la lista (list item) -->
+                <li>
+                    <strong>{{ $error }}</strong>
+                </li> <!-- elemento de la lista (list item) -->
                 @endforeach
             </ul>
         </div>
-    @endif
+        @endif
+    <br />
+    <div class="top-right">
+            <a href="/">Inicio&NonBreakingSpace;</a>
+            <a href="/user/loginPage">&NonBreakingSpace;Login</a>
+        </div>
+    
+      <div class="centered-div">
+        
+        <div class="col-6">
+            <form class="form-border form-color" action="/user" method="post">
+        
+         
+            <h3 class="login-title">Registro</h3>
+          
+          
+          <div class="row">
+              <div class="col">
+                <div class="form-group">
+                    <label>RUT</label>
+                    <input type="text" name="RUT" value="{{ old('RUT') }}" class="form-control" />
+                </div>
+              </div>
+            
+              <div class="col">
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" value="{{ old('password') }}" class="form-control" />
+                </div>
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control" />
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" />
+                </div>
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col">
+                <div class="form-group">
+                    <label>Número telefónico</label>
+                    <input type="text" name="telefono" value="{{ old('telefono') }}" class="form-control" />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group" style="resize: none;">
+                    <label>Fecha de nacimiento</label>
+                    <input type="date" name="fechaDeNacimiento" value="{{ old('fechaDeNacimiento') }}" class="form-control" />
+                </div>
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col">
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text" name="direccion" value="{{ old('direccion') }}" class="form-control" />
+                </div>
+              </div>
+
+              <div class="w-100"></div>
+
+              <div class="col">
+                <div class="form-group">
+                    <input type="submit" name="create" class="btn btn-primary" value="Confirmar" />  
+                </div>
+              </div>
+            </div>
+        </div>
+          
+
+      </form>
+      
+
+     
+      
+
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

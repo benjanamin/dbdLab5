@@ -22,12 +22,12 @@ class UserController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'RUT' => 'required',
-            'nombre' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'direccion' => 'required',
-            'telefono' => 'required',
+            'RUT' => 'required|min:9|max:10|unique:users',
+            'nombre' => 'required|max:35',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|max:12',
+            'direccion' => 'required|max:60',
+            'telefono' => 'required|numeric|digits:8',
             'fechaDeNacimiento' => 'required'
         ]);
         $usuario = new User;
@@ -40,9 +40,8 @@ class UserController extends Controller
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuario->IDROL = 1;
         $usuario->save();
-
-        $users = User::all();
-        return view('user.index', compact('users'));
+        
+        return redirect('/user/loginPage');
     }
 
     public function show($id){
@@ -58,12 +57,12 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         $request->validate([
-            'RUT' => 'required',
-            'nombre' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'direccion' => 'required',
-            'telefono' => 'required',
+            'RUT' => 'required|min:9|max:10|unique:users',
+            'nombre' => 'required|max:35',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|max:12',
+            'direccion' => 'required|max:60',
+            'telefono' => 'required|numeric|digits:8',
             'fechaDeNacimiento' => 'required'
         ]);
 
@@ -77,9 +76,6 @@ class UserController extends Controller
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
         $usuario->IDROL = 1; //cambiar segun permisos entre arrendador, arrendatario y admin
         $usuario->save();
-
-        $users = User::all();
-
 
         return view('user.index', compact('users'));
     }
@@ -115,6 +111,10 @@ class UserController extends Controller
             return back()->with('error', 'Datos de ingreso incorrectos.');
         }
 
+    }
+
+    public function registered(){
+        return redirect('user/loginPage');
     }
 
     public function success(){
