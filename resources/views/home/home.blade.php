@@ -25,8 +25,16 @@
         Rentall();       
       </div>
       <div class="top-right">
+        @if(Auth::check())
+        <a href="/user/{{ Auth::user()->id }}">Perfil&NonBreakingSpace;</a>
+        <a href="/advertisement/create">Publicar anuncio&NonBreakingSpace;</a>
+        <a href="/advertisement/showAdvertisements">Ver anuncios&NonBreakingSpace;</a>
+        <a href="/user/logout">Logout</a>
+        @endif
+        @if(Auth::guest())
         <a href="/user/loginPage">Ingresar&NonBreakingSpace;</a>
-        <a href="/user/create">&NonBreakingSpace;Registrarse</a>
+        <a href="/user/create">&NonBreakingSpace;Registrarse</a>        
+        @endif
       </div>
     </div>
     

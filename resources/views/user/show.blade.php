@@ -23,8 +23,8 @@
     <strong> Correo electrónico </strong>
     <p> {{ $user->email }} </p>
 
-    <strong> Contraseña </strong>
-    <p> {{ $user->password }}</p>
+    <strong> Rol </strong>
+    <p> {{ $rol->Nombre }}</p>
 
     <strong> Número telefónico </strong>
     <p> {{ $user->telefono }}</p>
@@ -36,18 +36,14 @@
     <p> {{ $user->direccion }}</p>
 
     <div>
-        <a href="/user">Volver</a>
-    </div>
-    <br>
-    <div>
-        <a href="/user/{{ $user->id }}/edit">Modificar anuncio</a>
+        <a href="/">Volver</a>
     </div>
     <br>
     <div>
         <form action="/user/{{ $user->id }}" method="POST">
             @method('DELETE')
             @csrf
-            <button>Borrar usuario</button>
+            <button>Dar de baja</button>
         </form>
     </div>
 

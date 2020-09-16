@@ -45,8 +45,6 @@
             
             
         </div>
-        @else
-            <script> window.location = "/user/login";</script>
         @endif      
       </div>
         

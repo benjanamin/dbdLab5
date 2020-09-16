@@ -21,6 +21,9 @@ class AdvertisementController extends Controller
     }
 
     public function store(Request $request){
+        if(Auth::guest()){
+            return redirect('/user/loginPage');
+        }
         $request->validate([
             'Titulo' => 'required|max:15',
             'Cantidad' => 'required|numeric|min:1|max:50',

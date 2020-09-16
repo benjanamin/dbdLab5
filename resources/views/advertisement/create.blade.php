@@ -41,22 +41,22 @@
 
             <div class="form-group">
                 <label>Título</label>
-                <input type="text" name="Titulo" class="form-control" value="{{ old('Titulo') }}" />
+                <input type="text" name="Titulo" class="form-control" autocomplete="off" value="{{ old('Titulo') }}" />
             </div>
 
             <div class="form-group">
                 <label>Cantidad</label>
-                <input type="number" min="0" name="Cantidad" class="form-control" value="{{ old('Cantidad') }}" />
+                <input type="number" min="1" name="Cantidad" class="form-control" autocomplete="off" value="{{ old('Cantidad') }}" />
             </div>
 
             <div class="form-group">
                 <label>Precio por unidad</label>
-                <input type="text" name="PrecioUnitario" class="form-control" value="{{ old('PrecioUnitario') }}" />
+                <input type="text" name="PrecioUnitario" class="form-control" autocomplete="off" value="{{ old('PrecioUnitario') }}" />
             </div>
 
             <div class="form-group">
                 <label>Descripción</label>
-                <textarea rows="2" type="text" name="Descripcion" class="form-control">{{ old('Descripcion') }}</textarea>
+                <textarea rows="2" type="text" name="Descripcion" autocomplete="off" class="form-control">{{ old('Descripcion') }}</textarea>
                 <!-- textarea no tiene atributo value -->
             </div>
 

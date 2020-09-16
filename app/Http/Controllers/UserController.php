@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Rol;
 use Validator;
 use Auth;
 
@@ -38,7 +39,7 @@ class UserController extends Controller
         $usuario->direccion = $request->direccion;
         $usuario->telefono = $request->telefono;
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->IDROL = 1;
+        $usuario->IDROL = Rol::where('Nombre', $request->Rol)->firstOrFail()->id; 
         $usuario->save();
         
         return redirect('/user/loginPage');
@@ -46,7 +47,8 @@ class UserController extends Controller
 
     public function show($id){
         $user = User::findOrFail($id);
-        return view('user.show', compact('user'));
+        $rol = Rol::findOrFail($user->IDROL);
+        return view('user.show', compact('user'), compact('rol'));
     }
 
     public function edit($id){
@@ -74,10 +76,10 @@ class UserController extends Controller
         $usuario->direccion = $request->direccion;
         $usuario->telefono = $request->telefono;
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->IDROL = 1; //cambiar segun permisos entre arrendador, arrendatario y admin
+        $usuario->IDROL = Rol::where('Nombre', $request->Rol)->firstOrFail()->id;
         $usuario->save();
 
-        return view('user.index', compact('users'));
+        return redirect('/user/loginPage');
     }
 
     public function destroy($id){
@@ -85,10 +87,9 @@ class UserController extends Controller
         $usuario->delete();
 
         $users = User::all();
-        return view('user.index', compact('users'));
+        return redirect('/user/create');
     }
 
-    //Testeado
     public function loginPage(){
         return view('user.login');
     }
@@ -111,10 +112,6 @@ class UserController extends Controller
             return back()->with('error', 'Datos de ingreso incorrectos.');
         }
 
-    }
-
-    public function registered(){
-        return redirect('user/loginPage');
     }
 
     public function success(){

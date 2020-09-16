@@ -26,7 +26,7 @@
       @endforelse
     </div>
     <div class="top-right">
-            <a href="/">Inicio&NonBreakingSpace;</a>
+            <a href="/">Inicio</a>
             <a href="/advertisement/create">&NonBreakingSpace;Publicar</a>
             <a href="/user/logout">&NonBreakingSpace;Logout</a>
         </div>

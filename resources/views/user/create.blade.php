@@ -28,7 +28,7 @@
     <br />
     <div class="top-right">
             <a href="/">Inicio&NonBreakingSpace;</a>
-            <a href="/user/loginPage">&NonBreakingSpace;Login</a>
+            <a href="/user/loginPage">&NonBreakingSpace;Ingresar</a>
         </div>
     
       <div class="centered-div">
@@ -44,14 +44,14 @@
               <div class="col">
                 <div class="form-group">
                     <label>RUT</label>
-                    <input type="text" name="RUT" value="{{ old('RUT') }}" class="form-control" />
+                    <input type="text" name="RUT" autocomplete="off" value="{{ old('RUT') }}" class="form-control" />
                 </div>
               </div>
             
               <div class="col">
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" name="password" value="{{ old('password') }}" class="form-control" />
+                    <input type="password" name="password" autocomplete="off" value="{{ old('password') }}" class="form-control" />
                 </div>
               </div>
 
@@ -60,14 +60,14 @@
               <div class="col">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control" />
+                    <input type="text" name="nombre" autocomplete="off" value="{{ old('nombre') }}" class="form-control" />
                 </div>
               </div>
 
               <div class="col">
                 <div class="form-group">
                     <label>Correo electrónico</label>
-                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" />
+                    <input type="email" name="email" autocomplete="off" value="{{ old('email') }}" class="form-control" />
                 </div>
               </div>
 
@@ -76,12 +76,12 @@
               <div class="col">
                 <div class="form-group">
                     <label>Número telefónico</label>
-                    <input type="text" name="telefono" value="{{ old('telefono') }}" class="form-control" />
+                    <input type="text" name="telefono" autocomplete="off" value="{{ old('telefono') }}" class="form-control" />
                 </div>
               </div>
 
               <div class="col-md-6">
-                <div class="form-group" style="resize: none;">
+                <div class="form-group">
                     <label>Fecha de nacimiento</label>
                     <input type="date" name="fechaDeNacimiento" value="{{ old('fechaDeNacimiento') }}" class="form-control" />
                 </div>
@@ -92,17 +92,33 @@
               <div class="col">
                 <div class="form-group">
                     <label>Dirección</label>
-                    <input type="text" name="direccion" value="{{ old('direccion') }}" class="form-control" />
+                    <input type="text" name="direccion" autocomplete="off" value="{{ old('direccion') }}" class="form-control" />
                 </div>
               </div>
-
+          
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Rol</label>
+                  <select name="Rol" class="form-control">
+                     <option value="Arrendatario">Arrendatario</option>
+                     <option value="Arrendador">Arrendador</option>
+                     <option value="Administrador">Administrador</option>
+                  </select>
+                </div>
+              </div>
+              
               <div class="w-100"></div>
 
-              <div class="col">
+              <div class="col-md-auto">
                 <div class="form-group">
                     <input type="submit" name="create" class="btn btn-primary" value="Confirmar" />  
                 </div>
               </div>
+
+              
+
+              
+
             </div>
         </div>
           
