@@ -1,35 +1,74 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\CrearUsuarioRequest;
+
 use Illuminate\Http\Request;
 use App\User;
+use App\Rol;
+use Validator;
+use Auth;
+
 
 class UserController extends Controller
 {
     public function index(){
-        $usuarios = User::all();
-        return $usuarios; 
+        $users = User::all();
+        return view('user.index', compact('users')); 
     }
 
     public function create(){
+        return view('user.create');
 
     }
 
-    public function rules()
-    {
-        return [
-            //Usuario
-            'RUT' => 'required|string|max:11',
-            'nombre' => 'required|string|max:50',
-            'email' => 'required|email|string|max:50|unique:users',
-            'password' => 'required|string|max:15',
-            'telefono' => 'required|string|max:25'
-        ];
-    }
-
-    public function store(CrearUsuarioRequest $request){
+    public function store(Request $request){
+        $request->validate([
+            'RUT' => 'required|min:9|max:10|unique:users',
+            'nombre' => 'required|max:35',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|max:12|min:5',
+            'direccion' => 'required|max:60',
+            'telefono' => 'required|numeric|digits:8',
+            'fechaDeNacimiento' => 'required'
+        ]);
         $usuario = new User;
+        $usuario->RUT = $request->RUT;
+        $usuario->nombre = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->password = bcrypt($request->password);
+        $usuario->direccion = $request->direccion;
+        $usuario->telefono = $request->telefono;
+        $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
+        $usuario->IDROL = Rol::where('Nombre', $request->Rol)->firstOrFail()->id; 
+        $usuario->save();
+        
+        return redirect('/user/loginPage');
+    }
+
+    public function show($id){
+        $user = User::findOrFail($id);
+        $rol = Rol::findOrFail($user->IDROL);
+        return view('user.show', compact('user'), compact('rol'));
+    }
+
+    public function edit($id){
+        $user = User::findOrFail($id);
+        return view('user.edit', compact('user'));
+
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'RUT' => 'required|min:9|max:10|unique:users',
+            'nombre' => 'required|max:35',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|max:12|min:5',
+            'direccion' => 'required|max:60',
+            'telefono' => 'required|numeric|digits:8',
+            'fechaDeNacimiento' => 'required'
+        ]);
+
+        $usuario = User::findOrFail($id);
         $usuario->RUT = $request->RUT;
         $usuario->nombre = $request->nombre;
         $usuario->email = $request->email;
@@ -37,39 +76,65 @@ class UserController extends Controller
         $usuario->direccion = $request->direccion;
         $usuario->telefono = $request->telefono;
         $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->IDROL = 1;
+        $usuario->IDROL = Rol::where('Nombre', $request->Rol)->firstOrFail()->id;
         $usuario->save();
-        return view('welcome');
-    }
 
-    public function show($id){
-        $usuario = User::findOrFail($id);
-        return $usuario;
-    }
-
-    public function edit($id){
-
-    }
-
-    public function update(Request $request, $id){
-        $usuario = User::findOrFail($id);
-        $usuario->RUT = $request->RUT;
-        $usuario->nombre = $request->nombre;
-        $usuario->email = $request->email;
-        $usuario->password = $request->password;
-        $usuario->telefono = $request->telefono;
-        $usuario->fechaDeNacimiento = $request->fechaDeNacimiento;
-        $usuario->IDROL = $request->IDROL;
-        $usuario->save();
-        return User::findOrFail($id);
+        return redirect('/user/loginPage');
     }
 
     public function destroy($id){
         $usuario = User::findOrFail($id);
         $usuario->delete();
-        return User::all();
+
+        $users = User::all();
+        return redirect('/user/create');
     }
 
+    public function loginPage(){
+        return view('user.login');
+    }
+
+    public function checkLogin(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|alphaNum|min:3'
+        ]);
+        
+        $user_data = array(
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        );
+
+        if(Auth::attempt($user_data)){
+            return redirect('/user/success');
+        }
+        else{
+            return back()->with('error', 'Datos de ingreso incorrectos.');
+        }
+
+    }
+
+    public function success(){
+        return view('user.success');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('/user/loginPage');
+        
+    } 
+
+
+
+
+
+
+
+
+
+
+
+    //Borrar estas funciones
     public function showForm(){
         return view('register');
     }
@@ -84,10 +149,8 @@ class UserController extends Controller
         $user = User::where($condition)->first();
         
         if(empty($user)){
-            return view('welcome');
+            return view('userData');
         }
-        return view('userData', ['data'=>$user]);
+        return $user;
     }
-
-    
 }

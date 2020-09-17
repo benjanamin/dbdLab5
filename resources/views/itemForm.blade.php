@@ -7,51 +7,77 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css')}}" >
-    <title>Hello, world!</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/form.css')}}" >
+    <title>Publicar aviso</title>
   </head>
   <body>
-    <form action="{{ action('AdvertisementController@store')}}" method="post">
-    <div class="input-group mb-3 col-md-6">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Nombre</span>
-        </div>
-        <input type="text" name="Titulo" class="form-control" id="Titulo" placeholder="Ingrese título del artículo..." aria-label="Titulo" aria-describedby="basic-addon1">
+    <form action="{{ action('AdvertisementController@postAd')}}" method="post">
+      <div class="section-1">
+        <button class="btn btn-primary text-left" onclick= home()>Inicio</button>
       </div>
-    <div class="input-group mb-3 col-md-9">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Descripción</span>
-        </div>
-        <textarea name="Descripcion" class="form-control" rows="5" id="Descripcion" placeholder="Ingrese descripción del artículo..."></textarea>
-        
+      <div class="align-self-center">
+        <h1>
+          xd
+        </h1>
+
       </div>
-    <div class="input-group mb-3 col-md-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="Categoria">Categoría</label>
+    <div class="container-fluid" style='padding-top: 10%; padding-bottom: 10%;'>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-4">
+          <div class="input-group">
+            <div class="input-group-prepend form-group">
+              <span class="input-group-text">Nombre</span>
+            </div>
+            <input type="text" name="Titulo" class="form-control" id="Titulo" placeholder="Ingrese título del artículo..." aria-label="Titulo" aria-describedby="basic-addon1">
+          </div>
         </div>
-        <select name="Categoria" class="custom-select" id="Categoria">
-          <option selected>Seleccione una...</option>
-          <option value="Inmobiliaria">Inmobiliaria</option>
-          <option value="Muebles">Muebles</option>
-          <option value="Artículos de camping">Artículos de camping</option>
-          <option value="Herramientas">Herramientas</option>
-          <option value="Espacios">Espacios</option>
-          <option value="Vehículos">Vehículos</option>
-        </select>
-      </div>
-      <div class="input-group mb-3 col-md-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">$</span>
+        <div class="col-2">
+          <div class="input-group">
+            <div class="input-group-prepend form-group">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="" name="PrecioUnitario"class="form-control" id="PrecioUnitario" placeholder="Precio/Unidad">
+          </div> 
         </div>
-        <input type="" name="PrecioUnitario"class="form-control" id="PrecioUnitario" placeholder="Precio Unitario">
       </div>
-      <div class="input-group mb-3 col-md-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">#</span>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-6">
+          <div class="input-group">
+            <div class="input-group-prepend form-group">
+              <span class="input-group-text">Descripción</span>
+            </div>
+            <textarea name="Descripcion" class="form-group" rows="4" id="Descripcion" placeholder="Ingrese descripción del artículo..."></textarea>       
+          </div>
         </div>
-        <input type="number" min=1 name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad">
       </div>
-      <button type="submit" action="/ad" class="btn btn-primary">Publicar</button>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-2">
+          <div class="input-group">
+            <div class="input-group-prepend form-group">
+              <span class="input-group-text">#</span>
+            </div>
+            <input type="number" min=1 name="Cantidad" class="form-control" id="Cantidad" placeholder="Cantidad">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="input-group">
+            <div class="input-group-prepend form-group">
+              <label class="input-group-text" for="Categoria">Categoría</label>
+            </div>
+            <select name="Categoria" class="custom-select" id="Categoria">
+              <option selected>...</option>
+              <option value="Inmobiliaria">Inmobiliaria</option>
+              <option value="Muebles">Muebles</option>
+              <option value="Artículos de camping">Artículos de camping</option>
+              <option value="Herramientas">Herramientas</option>
+              <option value="Espacios">Espacios</option>
+              <option value="Vehículos">Vehículos</option>
+            </select>     
+          </div>
+        </div>
+        <button type="submit" action="" class="btn btn-primary text-center">Publicar</button>
+    </div>
+      
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

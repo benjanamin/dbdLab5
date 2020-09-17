@@ -14,16 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home');
 });
-Route::get('/registro', 'UserController@showForm');
-Route::get('/datos', 'UserController@showData');
-Route::get('/usuario', 'UserController@getUserByEmail');
-Route::get('/form', 'AdvertisementController@showForm'); //test
 
+//Rutas para el login/registro de usuario 
+Route::get('/user/success', 'UserController@success')->middleware('auth');
+Route::get('/user/loginPage', 'UserController@loginPage')->middleware('guest');
+Route::post('/user/checkLogin', 'UserController@checkLogin');
+Route::get('/user/logout', 'UserController@logout');
 
 Route::resource('category','CategoryController');
-Route::resource('advertisement','AdvertisementController');
+Route::get('/advertisement/showAdvertisements', 'AdvertisementController@showAdvertisements')->middleware('auth');
+Route::resource('advertisement','AdvertisementController')->middleware('auth');
 Route::resource('order','OrderController');
 Route::resource('paymentMethod','paymentMethodController');
 Route::resource('permission','PermissionController');
@@ -34,4 +36,14 @@ Route::resource('transaction','TransactionController');
 Route::resource('valoration','ValorationController');
 
 
-    
+
+
+
+
+//Test
+Route::get('/registro', 'UserController@showForm');
+Route::get('/datos', 'UserController@showData');
+Route::get('/usuario', 'UserController@getUserByEmail');
+Route::get('/form', 'AdvertisementController@showForm'); 
+Route::post('/add', 'AdvertisementController@postAd');
+Route::get('/ad', 'AdvertisementController@showAd');
