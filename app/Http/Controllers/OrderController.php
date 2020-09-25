@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\User;
+use Auth;
 class OrderController extends Controller
 {
     public function index(){
@@ -28,6 +30,14 @@ class OrderController extends Controller
     public function show($id){
         $orden = Order::findOrFail($id);
         return $orden;
+    }
+
+    public function showOrders(){
+        $user = Auth::user();
+        $id = $user->id;
+        $ordenes = Order::All();
+        // return view("order.index", compact('ordenes'));
+        return view("order.index", compact('user'), compact('ordenes'));
     }
 
     public function edit($id){

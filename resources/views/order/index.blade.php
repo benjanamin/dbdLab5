@@ -8,45 +8,32 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}" >
-    <link href='https://fonts.googleapis.com/css?family=Ranchers' rel='stylesheet'>
-    <title>Inicio</title>
 
-    <!-- Para no usar @import url en style.css -->
-    <style>
-      div.title{
-        font-family: 'Ranchers'; 
-      }
-    </style>
-    <!--***************************************-->
-
+    <title>Muestra arriendos</title>
   </head>
-  <body>
-      <div class="title centered-div">
-        Rentall();       
+  <body class="py-4">
+    <h3 class="post-title">Historial de arriendos</h3>
+    <div class="container">
+      @forelse($ordenes as $orden)
+      @if($orden->IDUsuario === $user->id)
+      <div class="row mb-3">
+        <div class="col-6 themed-grid-col name-background">Estado Arriendo: {{ $orden->Estado }}</div>
+        <div class="col-3 themed-grid-col price-background">Cantidad arrendada${{ $orden->Cantidad }}</div>
+        <div class="col-3 themed-grid-col owner-background">ID Usuario {{ $orden->IDUsuario }}</div>
+        <div class="col-3 themed-grid-col owner-background">ID Anuncio {{ $orden->IDAnuncio }}</div>
+        <!-- <button type="submit" action = "UserController@showData" class="btn btn-primary">Valorar</button> -->
+        <form action="/valoration/showValoration/{{$orden->id}}" method="get"><button>Valorar</button></form>
       </div>
-      <div class="top-right">
-        @if(Auth::check())
-        <a href="/user/{{ Auth::user()->id }}">Perfil&NonBreakingSpace;</a>
-        <a href="/advertisement/create">Publicar anuncio&NonBreakingSpace;</a>
-        <a href="/advertisement/showAdvertisements">Ver anuncios&NonBreakingSpace;</a>
-        <a href="/order/showOrders">Historial arriendos&NonBreakingSpace;</a>
-        <a href="/user/logout">Logout</a>
-        @endif
-        @if(Auth::guest())
-        <a href="/user/loginPage">Ingresar&NonBreakingSpace;</a>
-        <a href="/user/create">&NonBreakingSpace;Registrarse</a>        
-        @endif
-      </div>
+      @endif
+      @empty
+      <p>No existen arriendos asociados a este usuario.</p>
+      @endforelse
     </div>
-    
-        
-
-    
-    
-    
-
-   
-   
+    <div class="top-right">
+            <a href="/">Inicio</a>
+            <a href="/advertisement/create">&NonBreakingSpace;Publicar</a>
+            <a href="/user/logout">&NonBreakingSpace;Logout</a>
+        </div>
     
 
     <!-- Optional JavaScript -->

@@ -23,6 +23,10 @@ Route::get('/user/loginPage', 'UserController@loginPage')->middleware('guest');
 Route::post('/user/checkLogin', 'UserController@checkLogin');
 Route::get('/user/logout', 'UserController@logout');
 
+Route::get('/order/showOrders', 'OrderController@showOrders');
+Route::get('/valoration/showValoration/{id}', 'ValorationController@showValoration');
+
+
 Route::resource('category','CategoryController');
 Route::get('/advertisement/showAdvertisements', 'AdvertisementController@showAdvertisements')->middleware('auth');
 Route::resource('advertisement','AdvertisementController')->middleware('auth');
