@@ -36,6 +36,12 @@
               </form>
             </div>
 
+            <div class="col centered-btn">
+              <form action="/order/showOrders" method="get">
+                <button>Historial arriendo</button>
+              </form>
+            </div>
+
             <div class="col end-btn">
               <form action="/user/logout" method="get">
                 <button>Logout</button>

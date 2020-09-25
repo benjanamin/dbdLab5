@@ -16,13 +16,13 @@
     <div class="container">
       @forelse($ordenes as $orden)
       @if($orden->IDUsuario === $user->id)
-      <div class="row mb-3">
-        <div class="col-6 themed-grid-col name-background">Estado Arriendo: {{ $orden->Estado }}</div>
+      <div class="row mb-3 text-center">
+        <div class="col-3 themed-grid-col name-background">Estado Arriendo: {{ $orden->Estado }}</div>
         <div class="col-3 themed-grid-col price-background">Cantidad arrendada${{ $orden->Cantidad }}</div>
-        <div class="col-3 themed-grid-col owner-background">ID Usuario {{ $orden->IDUsuario }}</div>
-        <div class="col-3 themed-grid-col owner-background">ID Anuncio {{ $orden->IDAnuncio }}</div>
+        <div class="col-2 themed-grid-col owner-background">ID Usuario {{ $orden->IDUsuario }}</div>
+        <div class="col-2 themed-grid-col owner-background-light">ID Anuncio {{ $orden->IDAnuncio }}</div>
         <!-- <button type="submit" action = "UserController@showData" class="btn btn-primary">Valorar</button> -->
-        <form action="/valoration/showValoration/{{$orden->id}}" method="get"><button>Valorar</button></form>
+        <form class="col-2 pl-4" action="/valoration/showValoration/{{$orden->id}}" method="get"><button>Valorar</button></form>
       </div>
       @endif
       @empty

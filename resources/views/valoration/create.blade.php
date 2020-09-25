@@ -27,8 +27,7 @@
     <p> {{ $anuncio->PrecioUnitario }}</p>
 
 
-    <div class="centered-div">
-        
+    <div class="centered-div">        
         <div class="col-6">
             <form class="form-border form-color" action="/valoration" method="post">         
             <h3 class="login-title">Valoracion</h3>
