@@ -26,7 +26,8 @@ class ValorationController extends Controller
         $valoracion->IDUsuario = Auth::user()->id;
         $valoracion->IDAnuncio = $request->IDAnuncio;
         $valoracion->save();
-        return Valoration::all(); 
+        // return Valoration::all(); 
+        return view("valoration.success", compact('valoracion'));
     }
 
     public function show($id){
